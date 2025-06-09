@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+
+<body>
+    <div class="container">
+        <h1>Blog Posts</h1>
+
+        <!--a form to add new blog posts, sends a post req to /add-->
+        <form action="/add" method="post">
+            <input type="date" name="date" required>
+            <br>
+            <label>Name:</label>
+            <br>
+            <input type="text" name="name" required>
+            <br>
+            <label>Message:</label>
+            <br>
+            <textarea name="message" required></textarea>
+            <br>
+            <button type="submit">Post</button>
+        </form>
+
+        <!--loops through each post and displays them-->
+        <% posts.forEach(post => { %>
+            <div class="post">
+                <!--displays post info-->
+                <p>Date: <%= post.date %></p>
+                <p>Name: <%= post.name %></p>
+                <p>Message: <%= post.message %></p>
+                <!--sends the deleted post to /delete/:id-->
+                <form action="/delete/ <%= post.id %>" method="post" style="display: inline;">
+                    <button type="submit" class="delete">Delete</button>
+                </form>
+
+                <!--loads the /edit/:id page-->
+                <a href="/edit/<%= post.id %>">Edit</a>
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>
