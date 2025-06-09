@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Post</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+
+<body>
+    <div class="container">
+        <h1>Edit Post</h1>
+        <!--fills the form with previous information and when submitted sends post request to /edit/:id-->
+        <form action="/edit/<%= post.id %>" method="post">
+            <input type="date" name="date" value="<%= post.date %>" required>
+            <input type="name" name="name" value="<%= post.name %>" required>
+            <textarea name="message" required><%= post.message %></textarea>
+            <button type="submit">Save</button>
+            <a href="/">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>
